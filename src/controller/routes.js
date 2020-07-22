@@ -52,7 +52,7 @@ router.get('/branch', auth, controllerAdapter(branchControllerInstance, 'list'))
 //#region [swagger: /paymentReason - GET]
 /**
  * @swagger
- * /paymentReason
+ * /paymentReason:
  *   get:
  *     tags:
  *       - references
@@ -82,7 +82,7 @@ router.get('/paymentReason', auth, controllerAdapter(paymentReasonControllerInst
 //#region [swagger: /paymentType - GET]
 /**
  * @swagger
- * /paymentType
+ * /paymentType:
  *   get:
  *     tags:
  *       - references
@@ -112,7 +112,7 @@ router.get('/paymentType', auth, controllerAdapter(paymentTypeControllerInstance
 //#region [swagger: /phoneType - GET]
 /**
  * @swagger
- * /phoneType
+ * /phoneType:
  *   get:
  *     tags:
  *       - references
@@ -142,7 +142,7 @@ router.get('/phoneType', auth, controllerAdapter(phoneTypeControllerInstance, 'l
 //#region [swagger: /receivedBy - GET]
 /**
  * @swagger
- * /receivedBy
+ * /receivedBy:
  *   get:
  *     tags:
  *       - references
