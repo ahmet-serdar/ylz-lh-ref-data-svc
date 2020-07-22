@@ -23,7 +23,7 @@ const auth = async (req, res, next) => {
 
       next();
     } catch (error) {
-        return res.status(401).json(error.message);
+        next(error)
     }
   };
 

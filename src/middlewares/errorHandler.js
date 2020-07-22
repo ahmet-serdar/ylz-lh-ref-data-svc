@@ -36,8 +36,8 @@ function errorHandler(nodeEnv) {
         break;
       case errors.InternalServerError.name:
       default:
-        if (err.name === "AuthenticationError") {
-          response = new responses.UnauthorizedResponse({});
+        if (err.name === "JwtParseError") {
+          response = new responses.UnauthorizedResponse();
         } else {
           response = new responses.InternalServerErrorResponse({});
         }
