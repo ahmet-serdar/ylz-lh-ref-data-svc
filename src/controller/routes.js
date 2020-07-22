@@ -47,7 +47,7 @@ const router = new express.Router()
  *            
  */
 //#endregion
-router.get('/branch', controllerAdapter(branchControllerInstance, 'list'))
+router.get('/branch', auth, controllerAdapter(branchControllerInstance, 'list'))
 
 //#region [swagger: /paymentReason - GET]
 /**
@@ -77,7 +77,7 @@ router.get('/branch', controllerAdapter(branchControllerInstance, 'list'))
  *            
  */
 //#endregion
-router.get('/paymentReason', controllerAdapter(paymentReasonControllerInstance, 'list'))
+router.get('/paymentReason', auth, controllerAdapter(paymentReasonControllerInstance, 'list'))
 
 //#region [swagger: /paymentType - GET]
 /**
@@ -107,7 +107,7 @@ router.get('/paymentReason', controllerAdapter(paymentReasonControllerInstance, 
  *            
  */
 //#endregion
-router.get('/paymentType', controllerAdapter(paymentTypeControllerInstance, 'list'))
+router.get('/paymentType', auth, controllerAdapter(paymentTypeControllerInstance, 'list'))
 
 //#region [swagger: /phoneType - GET]
 /**
@@ -137,7 +137,7 @@ router.get('/paymentType', controllerAdapter(paymentTypeControllerInstance, 'lis
  *            
  */
 //#endregion
-router.get('/phoneType', controllerAdapter(phoneTypeControllerInstance, 'list'))
+router.get('/phoneType', auth, controllerAdapter(phoneTypeControllerInstance, 'list'))
 
 //#region [swagger: /receivedBy - GET]
 /**
@@ -167,7 +167,7 @@ router.get('/phoneType', controllerAdapter(phoneTypeControllerInstance, 'list'))
  *            
  */
 //#endregion
-router.get('/receivedBy', controllerAdapter(receivedByControllerInstance, 'list'))
+router.get('/receivedBy', auth, controllerAdapter(receivedByControllerInstance, 'list'))
 
 
 module.exports = router;
