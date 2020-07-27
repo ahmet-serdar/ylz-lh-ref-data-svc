@@ -4,8 +4,7 @@ const {
   branchControllerInstance,
   paymentReasonControllerInstance,
   paymentTypeControllerInstance,
-  phoneTypeControllerInstance,
-  receivedByControllerInstance
+  phoneTypeControllerInstance
 } = require('./index')
 
 
@@ -14,7 +13,6 @@ const router = new express.Router()
 // router.post("/paymentReason", controllerAdapter(paymentReasonControllerInstance, 'create'))
 // router.post("/paymentType", controllerAdapter(paymentTypeControllerInstance, 'create'))
 // router.post("/phoneType", controllerAdapter(phoneTypeControllerInstance, 'create'))
-// router.post("/receivedBy", controllerAdapter(receivedByControllerInstance, 'create'))
 
 
 
@@ -107,7 +105,7 @@ router.get('/paymentReason', auth, controllerAdapter(paymentReasonControllerInst
  *            
  */
 //#endregion
-router.get('/paymentType', auth, controllerAdapter(paymentTypeControllerInstance, 'list'))
+router.get('/paymentType', controllerAdapter(paymentTypeControllerInstance, 'list'))
 
 //#region [swagger: /phoneType - GET]
 /**
@@ -138,36 +136,5 @@ router.get('/paymentType', auth, controllerAdapter(paymentTypeControllerInstance
  */
 //#endregion
 router.get('/phoneType', auth, controllerAdapter(phoneTypeControllerInstance, 'list'))
-
-//#region [swagger: /receivedBy - GET]
-/**
- * @swagger
- * /receivedBy:
- *   get:
- *     tags:
- *       - references
- *     summary: Get all receivedBys
- *     description: Returns all receivedBys
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: authorization
- *         description: Bearer Authentication Token (It will be written as "Bearer + space + idToken" )
- *         in: header
- *         type: string
- *         required: true
- *     responses:
- *       200:
- *         description: An array of all receivedBys
- *       401:
- *         description: Unauthorized Error
- *         schema: 
- *           type: string
- *           example: "Authentication failed! Try again."    
- *            
- */
-//#endregion
-router.get('/receivedBy', auth, controllerAdapter(receivedByControllerInstance, 'list'))
-
 
 module.exports = router;
