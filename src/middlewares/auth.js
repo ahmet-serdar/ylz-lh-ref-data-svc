@@ -8,7 +8,7 @@ const verifier = new OktaJwtVerifier({
   issuer: oktaIssuer,
   clientId: oktaClientId,
   assertClaims: {
-    'groups.includes': ['Manager']
+    'groups.includes': ['Manager', 'Admin']
   }
 });
 
@@ -20,6 +20,7 @@ const auth = async (req, res, next) => {
       }
       const accessToken = req.headers.authorization.trim().split(' ')[1];  
       const ret = await verifier.verifyAccessToken(accessToken, oktaClientId);
+      res.locals.adminID = ret.claims.sub
 
       next();
     } catch (error) {

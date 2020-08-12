@@ -34,6 +34,38 @@ class PaymentTypeController {
 
     return new responses.OkResponse(data);
   }
+
+  async update({ query, params }) {
+    debug('PaymentTypeController - update:', JSON.stringify(query, params))
+    const _id = params.id
+
+    const paymentType = await PaymentType.findByIdAndUpdate(_id, body, {new: true, runValidators: true})
+
+    return new responses.OkResponse(paymentType)
+  }
+
+  async delete({ params, locals }) {
+    debug('PaymentTypeController - delete:', JSON.stringify(params));
+    const _id = params.id;
+    const adminID = locals.adminID
+
+    let paymentType = await PaymentType.findById(_id);
+    if(paymentType.deletedAt !== null) {
+      return new responses.BadRequestResponse('PaymentType was already deleted!')
+    }
+
+    paymentType = await PaymentType.findByIdAndUpdate(
+      _id,
+      { deletedAt: new Date(), deletedBy: adminID },
+      { new: true, runValidators: true }
+    );
+
+    return paymentType
+      ? new responses.OkResponse(paymentType)
+      : new responses.NotFoundResponse('PaymentType not exist!');
+  }
 }
+
+
 
 module.exports = PaymentTypeController.getInstance();

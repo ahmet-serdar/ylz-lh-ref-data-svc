@@ -9,10 +9,20 @@ const {
 
 
 const router = new express.Router()
-// router.post("/branch", controllerAdapter(branchControllerInstance, 'create'))
-// router.post("/paymentReason", controllerAdapter(paymentReasonControllerInstance, 'create'))
-// router.post("/paymentType", controllerAdapter(paymentTypeControllerInstance, 'create'))
-// router.post("/phoneType", controllerAdapter(phoneTypeControllerInstance, 'create'))
+router.post("/branch", controllerAdapter(branchControllerInstance, 'create'))
+router.post("/paymentReason", controllerAdapter(paymentReasonControllerInstance, 'create'))
+router.post("/paymentType", controllerAdapter(paymentTypeControllerInstance, 'create'))
+router.post("/phoneType", controllerAdapter(phoneTypeControllerInstance, 'create'))
+
+router.post("/branch", controllerAdapter(branchControllerInstance, 'update'))
+router.post("/paymentReason", controllerAdapter(paymentReasonControllerInstance, 'update'))
+router.post("/paymentType", controllerAdapter(paymentTypeControllerInstance, 'update'))
+router.post("/phoneType", controllerAdapter(phoneTypeControllerInstance, 'update'))
+
+router.post("/branch", controllerAdapter(branchControllerInstance, 'delete'))
+router.post("/paymentReason", controllerAdapter(paymentReasonControllerInstance, 'delete'))
+router.post("/paymentType", controllerAdapter(paymentTypeControllerInstance, 'delete'))
+router.post("/phoneType", controllerAdapter(phoneTypeControllerInstance, 'delete'))
 
 
 

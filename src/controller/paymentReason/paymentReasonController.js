@@ -34,6 +34,36 @@ class PaymentReasonController {
 
     return new responses.OkResponse(data);
   }
+
+  async update({ query, params }) {
+    debug('PaymentReasonController - update:', JSON.stringify(query, params))
+    const _id = params.id
+
+    const paymentReason = await PaymentReason.findByIdAndUpdate(_id, body, {new: true, runValidators: true})
+
+    return new responses.OkResponse(paymentReason)
+  }
+
+  async delete({ params, locals }) {
+    debug('PaymentReasonController - delete:', JSON.stringify(params));
+    const _id = params.id;
+    const adminID = locals.adminID
+
+    let paymentReason = await PaymentReason.findById(_id);
+    if(paymentReason.deletedAt !== null) {
+      return new responses.BadRequestResponse('PaymentReason was already deleted!')
+    }
+
+    paymentReason = await PaymentReason.findByIdAndUpdate(
+      _id,
+      { deletedAt: new Date(), deletedBy: adminID },
+      { new: true, runValidators: true }
+    );
+
+    return paymentReason
+      ? new responses.OkResponse(paymentReason)
+      : new responses.NotFoundResponse('PaymentReason not exist!');
+  }
 }
 
 module.exports = PaymentReasonController.getInstance();

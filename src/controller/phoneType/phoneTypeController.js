@@ -34,6 +34,36 @@ class PhoneTypeController {
 
     return new responses.OkResponse(data);
   }
+
+  async update({ query, params }) {
+    debug('PhoneTypeController - update:', JSON.stringify(query, params))
+    const _id = params.id
+
+    const phoneType = await PhoneType.findByIdAndUpdate(_id, body, {new: true, runValidators: true})
+
+    return new responses.OkResponse(phoneType)
+  }
+
+  async delete({ params, locals }) {
+    debug('PhoneTypeController - delete:', JSON.stringify(params));
+    const _id = params.id;
+    const adminID = locals.adminID
+
+    let phoneType = await PhoneType.findById(_id);
+    if(phoneType.deletedAt !== null) {
+      return new responses.BadRequestResponse('PhoneType was already deleted!')
+    }
+
+    phoneType = await PhoneType.findByIdAndUpdate(
+      _id,
+      { deletedAt: new Date(), deletedBy: adminID },
+      { new: true, runValidators: true }
+    );
+
+    return phoneType
+      ? new responses.OkResponse(phoneType)
+      : new responses.NotFoundResponse('PhoneType not exist!');
+  }
 }
 
 module.exports = PhoneTypeController.getInstance();

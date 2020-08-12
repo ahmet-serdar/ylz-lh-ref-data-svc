@@ -3,6 +3,14 @@ const mongoose = require('mongoose')
 const phoneTypeSchema = new mongoose.Schema ({
     name: {
       type: String
+    },
+    deletedAt: {
+      type: Date || null,
+      default: null
+    },
+    deletedBy: {
+      type: String,
+      default: null
     }
   
 })
