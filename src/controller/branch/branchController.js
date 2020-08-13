@@ -50,13 +50,13 @@ class BranchController {
     const _id = params.id;
     const adminID = locals.adminID
 
-    let branch = await Branch.findById(_id);
+    let branch = await Branch.findOne({id: _id}).exec();
     if(branch.deletedAt !== null) {
       return new responses.BadRequestResponse('Branch was already deleted!')
     }
 
-    branch = await Branch.findByIdAndUpdate(
-      _id,
+    branch = await Branch.findOneAndUpdate(
+      {id: _id},
       { deletedAt: new Date(), deletedBy: adminID },
       { new: true, runValidators: true }
     );
