@@ -51,7 +51,7 @@ const validations = Object.freeze({
       }
       
   }},
-  PhoneType(locationType = constants.HttpRequestLocation.query, isRequired = true) {
+  phoneType(locationType = constants.HttpRequestLocation.query, isRequired = true) {
     return {
       in: [locationType],
       optional: !isRequired,
