@@ -60,7 +60,7 @@ const validations = Object.freeze({
           if(value) {
             return value.length >= 1}
         },
-        errorMessage: `Phone Type is required!`
+        errorMessage: `Phone Type  is required!`
       }
       
   }}
