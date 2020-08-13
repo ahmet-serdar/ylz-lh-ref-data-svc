@@ -1,11 +1,11 @@
-const branchControllerInstance = require('./branch/branchController')
-const paymentReasonControllerInstance = require('./paymentReason/paymentReasonController')
-const paymentTypeControllerInstance = require('./paymentType/paymentTypeController')
-const phoneTypeControllerInstance = require('./phoneType/phoneTypeController')
+const branchRouter= require('./branch/routes')
+const paymentReasonRouter = require('./paymentReason/routes')
+const paymentTypeRouter = require('./paymentType/routes')
+const phoneTypeRouter = require('./phoneType/routes')
 
 module.exports = {
-  branchControllerInstance,
-  paymentReasonControllerInstance,
-  paymentTypeControllerInstance,
-  phoneTypeControllerInstance
+  branchRouter,
+  paymentReasonRouter,
+  paymentTypeRouter,
+  phoneTypeRouter
 }

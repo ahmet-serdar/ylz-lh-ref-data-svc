@@ -4,7 +4,12 @@ const appInfo = require("pjson")
 const { error } = require("@ylz/logger")
 
 const Swagger = require("./libs/Swagger")
-const routes = require('./controller/routes')
+const {
+  branchRouter,
+  paymentReasonRouter,
+  paymentTypeRouter,
+  phoneTypeRouter
+} = require('./controller')
 
 
 
@@ -115,8 +120,17 @@ class Router {
     });
   }
   initControllerRoutes() {
-    // mount routes
-    this.router.use("/", routes);
+    // mount branch routes as /branch
+    this.router.use("/branch", branchRouter);
+
+    //mount paymentReason router as /paymentReason
+    this.router.use("/paymentReason", paymentReasonRouter);
+
+    //mount paymentType router as /paymentType
+    this.router.use("/paymentType", paymentTypeRouter);
+
+    //mount phoneType router as /phoneType
+    this.router.use("/phoneTyoe", phoneTypeRouter);
   }
 }
 
