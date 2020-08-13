@@ -1,5 +1,6 @@
 const express = require('express')
 const { controllerAdapter, auth, schemaErrorHandler } = require('../../middlewares')
+const { checkSchema } = require("express-validator")
 const paymentTypeControllerInstance = require('./paymentTypeController')
 const validations = require('../validations')
 
