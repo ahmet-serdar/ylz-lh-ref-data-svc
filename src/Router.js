@@ -130,7 +130,7 @@ class Router {
     this.router.use("/paymentType", paymentTypeRouter);
 
     //mount phoneType router as /phoneType
-    this.router.use("/phoneTyoe", phoneTypeRouter);
+    this.router.use("/phoneType", phoneTypeRouter);
   }
 }
 

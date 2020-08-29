@@ -26,6 +26,7 @@ class PhoneTypeController {
     debug('PhoneTypeController - list:', JSON.stringify(query, null, 2));
 
     const { limit, skip } = query;
+    console.log('object')
     const data = await PhoneType.find({}, null, {
       limit,
       skip,
