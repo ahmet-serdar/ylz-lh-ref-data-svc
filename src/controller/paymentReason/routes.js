@@ -143,7 +143,7 @@ router.get('/', auth, checkSchema(validations.list), schemaErrorHandler(), contr
  *         
  */
 //#endregion
-router.post("/:id", auth, checkSchema(validations.update), schemaErrorHandler(), controllerAdapter(paymentReasonControllerInstance, 'update'))
+router.patch("/:id", auth, checkSchema(validations.update), schemaErrorHandler(), controllerAdapter(paymentReasonControllerInstance, 'update'))
 
 //#region [swagger: /customers/{id} - DELETE]
 /**
@@ -186,7 +186,7 @@ router.post("/:id", auth, checkSchema(validations.update), schemaErrorHandler(),
  *
  */
 //#endregion
-router.post("/:id", auth, controllerAdapter(paymentReasonControllerInstance, 'delete'))
+router.delete("/:id", auth, controllerAdapter(paymentReasonControllerInstance, 'delete'))
 
 
 

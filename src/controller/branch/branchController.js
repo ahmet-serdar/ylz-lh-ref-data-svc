@@ -14,14 +14,7 @@ class BranchController {
     return BranchController.instance;
   }
 
-  async create({ body }) {
-    debug('BranchController - create:', JSON.stringify(body));
-
-    const branch = new Branch(body)
-    await branch.save();
-
-    return new responses.CreatedResponse(branch);
-  }
+                       
 
   async list({ query }) {
     debug('BranchController - list:', JSON.stringify(query, null, 2));
@@ -50,13 +43,12 @@ class BranchController {
     const _id = params.id;
     const adminID = locals.adminID
 
-    let branch = await Branch.findOne({id: _id}).exec();
+    let branch = await Branch.findById(_id)
     if(branch.deletedAt !== null) {
       return new responses.BadRequestResponse('Branch was already deleted!')
     }
 
-    branch = await Branch.findOneAndUpdate(
-      {id: _id},
+    branch = await Branch.findByIdAndUpdate(_id,
       { deletedAt: new Date(), deletedBy: adminID },
       { new: true, runValidators: true }
     );
