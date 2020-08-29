@@ -15,7 +15,7 @@ function controllerAdapter(controller = null, functionName = "") {
       if (locals.isHit) {
         return next();
       }
-
+      console.log('object', functionName, controller)
       const response = await controller[functionName]({ headers: { authorization }, params, query, body, locals });
 
       res.locals.isHit = true;

@@ -12,9 +12,16 @@ class BranchController {
     }
 
     return BranchController.instance;
-  }
+  }   
+       
+  async create({ body }) {
+    debug('BranchController - create:', JSON.stringify(body));
 
-                       
+    const branch = new Branch(body)
+    await branch.save();
+
+    return new responses.CreatedResponse(branch);
+  }               
 
   async list({ query }) {
     debug('BranchController - list:', JSON.stringify(query, null, 2));
