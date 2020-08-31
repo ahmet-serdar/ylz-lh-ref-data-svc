@@ -36,8 +36,8 @@ class BranchController {
     return new responses.OkResponse(data);
   }
 
-  async update({ query, params }) {
-    debug('BranchController - update:', JSON.stringify(query, params))
+  async update({ query, params, body }) {
+    debug('BranchController - update:', JSON.stringify(query, params, body))
     const _id = params.id
 
     const branch = await Branch.findByIdAndUpdate(_id, body, {new: true, runValidators: true})

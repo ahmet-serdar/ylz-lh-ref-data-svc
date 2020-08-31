@@ -26,7 +26,6 @@ class PhoneTypeController {
     debug('PhoneTypeController - list:', JSON.stringify(query, null, 2));
 
     const { limit, skip } = query;
-    console.log('object')
     const data = await PhoneType.find({}, null, {
       limit,
       skip,
@@ -36,8 +35,8 @@ class PhoneTypeController {
     return new responses.OkResponse(data);
   }
 
-  async update({ query, params }) {
-    debug('PhoneTypeController - update:', JSON.stringify(query, params))
+  async update({ query, params, body }) {
+    debug('PhoneTypeController - update:', JSON.stringify(query, params, body))
     const _id = params.id
 
     const phoneType = await PhoneType.findByIdAndUpdate(_id, body, {new: true, runValidators: true})

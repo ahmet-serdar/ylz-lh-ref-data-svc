@@ -35,8 +35,8 @@ class PaymentReasonController {
     return new responses.OkResponse(data);
   }
 
-  async update({ query, params }) {
-    debug('PaymentReasonController - update:', JSON.stringify(query, params))
+  async update({ query, params, body }) {
+    debug('PaymentReasonController - update:', JSON.stringify(query, params, body))
     const _id = params.id
 
     const paymentReason = await PaymentReason.findByIdAndUpdate(_id, body, {new: true, runValidators: true})

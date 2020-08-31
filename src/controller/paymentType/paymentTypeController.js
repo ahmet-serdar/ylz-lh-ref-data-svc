@@ -35,8 +35,8 @@ class PaymentTypeController {
     return new responses.OkResponse(data);
   }
 
-  async update({ query, params }) {
-    debug('PaymentTypeController - update:', JSON.stringify(query, params))
+  async update({ query, params, body }) {
+    debug('PaymentTypeController - update:', JSON.stringify(query, params, body))
     const _id = params.id
 
     const paymentType = await PaymentType.findByIdAndUpdate(_id, body, {new: true, runValidators: true})

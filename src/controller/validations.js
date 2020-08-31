@@ -8,7 +8,7 @@ const validations = Object.freeze({
   id: {
     custom: {
       options: (id) => utilities.isValidObjectId(id),
-      errorMessage: 'Wrong format!',
+      errorMessage: 'Wrong id format!',
     },
   },
   branch(locationType = constants.HttpRequestLocation.query, isRequired = true) {
@@ -87,13 +87,14 @@ const validator = Object.freeze({
       errorMessage: 'Wrong format',
     },
   },
-  create: {
+  create: {    
     branch: validations.branch('body', false),
     paymentReason: validations.paymentReason('body', false),
     paymentType: validations.paymentType('body', false),
     phoneType: validations.phoneType('body', false)
   },
   update: {
+    id: validations.id,
     branch: validations.branch('body', false),
     paymentReason: validations.paymentReason('body', false),
     paymentType: validations.paymentType('body', false),
