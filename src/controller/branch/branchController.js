@@ -14,10 +14,13 @@ class BranchController {
     return BranchController.instance;
   }   
        
-  async create({ body }) {
-    debug('BranchController - create:', JSON.stringify(body));
+  async create({ body, locals }) {
+    debug('BranchController - create:', JSON.stringify(body, locals));
+    const adminID = locals.adminID
 
     const branch = new Branch(body)
+    branch.createdBy = adminID
+    
     await branch.save();
 
     return new responses.CreatedResponse(branch);

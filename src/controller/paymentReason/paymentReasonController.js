@@ -14,9 +14,13 @@ class PaymentReasonController {
     return PaymentReasonController.instance;
   }
 
-  async create({ body }) {
-    debug('PaymentReasonController - create:', JSON.stringify(body));
+  async create({ body, locals }) {
+    debug('PaymentReasonController - create:', JSON.stringify(body, locals));
+    const adminID = locals.adminID
+
     const paymentReason = new PaymentReason(body)
+    paymentReason.createdBy = adminID
+
     await paymentReason.save();
 
     return new responses.CreatedResponse(paymentReason);

@@ -11,8 +11,13 @@ const phoneTypeSchema = new mongoose.Schema ({
     deletedBy: {
       type: String,
       default: null
+    },
+    createdBy: {
+      type: String,
+      required: true
     }
-  
+}, {
+  timestamps: true
 })
 
 phoneTypeSchema.set('toJSON', {

@@ -14,9 +14,13 @@ class PhoneTypeController {
     return PhoneTypeController.instance;
   }
 
-  async create({ body }) {
-    debug('PhoneTypeController - create:', JSON.stringify(body));
+  async create({ body, locals }) {
+    debug('PhoneTypeController - create:', JSON.stringify(body, locals));
+    const adminID = locals.adminID
+
     const phoneType = new PhoneType(body)
+    phoneType.createdBy = adminID
+    
     await phoneType.save();
 
     return new responses.CreatedResponse(phoneType);

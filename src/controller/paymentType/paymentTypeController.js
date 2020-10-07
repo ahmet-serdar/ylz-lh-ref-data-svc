@@ -14,9 +14,13 @@ class PaymentTypeController {
     return PaymentTypeController.instance;
   }
 
-  async create({ body }) {
-    debug('PaymentTypeController - create:', JSON.stringify(body));
+  async create({ body, locals }) {
+    debug('PaymentTypeController - create:', JSON.stringify(body, locals));
+    const adminID = locals.adminID
+
     const paymentType = new PaymentType(body)
+    paymentType.createdBy = adminID
+    
     await paymentType.save();
 
     return new responses.CreatedResponse(paymentType);

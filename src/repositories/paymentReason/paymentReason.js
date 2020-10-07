@@ -11,8 +11,13 @@ const paymentReasonSchema = new mongoose.Schema ({
     deletedBy: {
       type: String,
       default: null
+    },
+    createdBy: {
+      type: String,
+      required: true
     }
-  
+}, {
+  timestamps: true
 })
 
 paymentReasonSchema.set('toJSON', {

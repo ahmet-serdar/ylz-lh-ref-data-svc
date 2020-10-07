@@ -2,7 +2,6 @@
 
 const { constants } = require('@ylz/common')
 const { utilities } = require('@ylz/data-access')
-const { isBoolean } = require('@ylz/common/dist/src/libs/validations')
 
 const validations = Object.freeze({
   id: {
